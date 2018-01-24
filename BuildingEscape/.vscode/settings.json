@@ -1,10 +1,10 @@
 {
 	"typescript.tsc.autoDetect": "off",
 	"files.exclude": {
-		"D:/UE4Projects/Section_03/BuildingEscape/.vs": true,
 		"D:/UE4Projects/Section_03/BuildingEscape/.vscode": true,
 		"D:/UE4Projects/Section_03/BuildingEscape/Content": true,
 		"D:/UE4Projects/Section_03/BuildingEscape/Intermediate": true,
 		"D:/UE4Projects/Section_03/BuildingEscape/Saved": true
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }
