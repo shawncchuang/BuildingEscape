@@ -13,6 +13,7 @@ UOpenDoor::UOpenDoor()
 {
 	PrimaryComponentTick.bCanEverTick = true;
 	// ...
+ 
 }
 
 // Called when the game starts
@@ -22,18 +23,18 @@ void UOpenDoor::BeginPlay()
 	Owner = GetOwner();
 	if (!PressurePlate)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s missing pressure plate"), *Actor->GetName())
+		UE_LOG(LogTemp, Warning, TEXT("%s missing pressure plate"), *Owner->GetName())
 	}
 }
 
 void UOpenDoor::OpenDoor()
 {
-
 	// Create a rotator
-	FRotator NewRotation = FRotator(0.0f, OpenAngle, 0.0f);
-
+	//FRotator NewRotation = FRotator(0.0f, OpenAngle, 0.0f);
 	// Set the door rotation
-	Owner->SetActorRotation(NewRotation);
+	//Owner->SetActorRotation(NewRotation);
+
+	OnOpenRequest.Broadcast(OpenDoorTime);
 }
 
 void UOpenDoor::CloseDoor()
@@ -63,19 +64,21 @@ float UOpenDoor::GetTotalMassOfActorOnPlate()
 {
 	float TotalMass = 0.f;
 
-	if (!PressurePlate){return TotalMass;}
- 
-		// Find all the overlapping actors
-		TArray<AActor*> OverlappingActors;
-		PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+	if (!PressurePlate)
+	{
+		return TotalMass;
+	}
 
-			// Iterate thriugh them adding their masses
-			for (const auto &Actor : OverlappingActors)
-			{
-				TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
-				UE_LOG(LogTemp, Warning, TEXT("%s on passture plate. %f kb."), *Actor->GetName(),TotalMass)
-			}
-		
- 
+	// Find all the overlapping actors
+	TArray<AActor *> OverlappingActors;
+	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
+
+	// Iterate thriugh them adding their masses
+	for (const auto &Actor : OverlappingActors)
+	{
+		TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
+		UE_LOG(LogTemp, Warning, TEXT("%s on passture plate. %f kb."), *Actor->GetName(), TotalMass)
+	}
+
 	return TotalMass;
 }
