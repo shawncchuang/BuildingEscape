@@ -6,5 +6,10 @@
 		"D:/UE4Projects/Section_03/BuildingEscape/Intermediate": true,
 		"D:/UE4Projects/Section_03/BuildingEscape/Saved": true
 	},
-	"C_Cpp.errorSquiggles": "Disabled"
+	"C_Cpp.errorSquiggles": "Disabled",
+	"files.associations": {
+		"iosfwd": "cpp",
+		"xlocale": "cpp",
+		"xstring": "cpp"
+	}
 }

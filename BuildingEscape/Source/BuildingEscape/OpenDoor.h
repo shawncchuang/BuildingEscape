@@ -7,41 +7,40 @@
 #include "Components/ActorComponent.h"
 #include "OpenDoor.generated.h"
 
-
-
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+  public:
 	// Sets default values for this component's properties
 	UOpenDoor();
 
-protected:
+  protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
 	void OpenDoor();
 	void CloseDoor();
 
-public:	
+  public:
 	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
-private :
+  private:
 	UPROPERTY(EditAnyWhere)
 	float OpenAngle = -90.0f;
-	
-	UPROPERTY(EditAnyWhere)
-		ATriggerVolume* PressurePlate;
-	
-	UPROPERTY(EditAnyWhere)
-		float DoorCloseDelay = 1.f;
-	
-		float LastDoorOpenTime;
 
-		AActor* ActorThatOpens; // Remeber pawn inherits from actor
-		AActor* Owner; // The  owning door
+	UPROPERTY(EditAnyWhere)
+	ATriggerVolume *PressurePlate;
 
+	UPROPERTY(EditAnyWhere)
+	float DoorCloseDelay = 1.f;
+
+	float LastDoorOpenTime;
+
+	AActor *Owner; // The  owning door
+
+	// Returns total mass in kg
+	float GetTotalMassOfActorOnPlate();
 };
