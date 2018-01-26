@@ -32,7 +32,7 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 	float OpenAngle = -90.0f;
 
 	UPROPERTY(EditAnyWhere)
-	ATriggerVolume *PressurePlate;
+	ATriggerVolume *PressurePlate = nullptr;
 
 	UPROPERTY(EditAnyWhere)
 	float DoorCloseDelay = 1.f;
