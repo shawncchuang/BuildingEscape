@@ -15,19 +15,19 @@ class BUILDINGESCAPE_API UGrabber : public UActorComponent
 {
 	GENERATED_BODY()
 
-  public:
+public:
 	// Sets default values for this component's properties
 	UGrabber();
 
-  protected:
+protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-  public:
+public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
-  private:
+private:
 	// How far ahead of the player can we reach in chair
 	float Reach = 100.f;
 
@@ -49,4 +49,10 @@ class BUILDINGESCAPE_API UGrabber : public UActorComponent
 
 	// Return hit for first physics body in reach
 	const FHitResult GetFirstPhysicsBodyInReach();
+
+	// Return current begin of reach line
+	FVector GetReachLineStart();
+
+	// Returen current end of reach line
+	FVector GetReachLineEnd();
 };
