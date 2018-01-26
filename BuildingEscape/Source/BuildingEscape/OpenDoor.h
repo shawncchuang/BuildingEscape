@@ -39,7 +39,7 @@ class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 
 	float LastDoorOpenTime;
 
-	AActor *Owner; // The  owning door
+	AActor *Owner = nullptr; // The  owning door
 
 	// Returns total mass in kg
 	float GetTotalMassOfActorOnPlate();

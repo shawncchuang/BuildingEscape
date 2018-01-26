@@ -59,10 +59,9 @@ void UGrabber::Grab()
 	auto ComponentToGrab = HitResult.GetComponent(); // Return PrimitiveComponent
 	auto ActorHit = HitResult.GetActor();
 
-	/// If we hit somthing then attach a physics handle
 	if (ActorHit)
 	{
-
+		/// If we hit somthing then attach a physics handle
 		PhysicsHandle->GrabComponentAtLocationWithRotation(
 			ComponentToGrab,
 			NAME_None,
@@ -70,9 +69,12 @@ void UGrabber::Grab()
 			ComponentToGrab->GetOwner()->GetActorRotation());
 	}
 }
-
 void UGrabber::Release()
 {
+	if (!PhysicsHandle)
+	{
+		return;
+	}
 	PhysicsHandle->ReleaseComponent();
 }
 
@@ -80,6 +82,10 @@ void UGrabber::Release()
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	if (!PhysicsHandle)
+	{
+		return;
+	}
 
 	// if the pyhsics handle is attached
 	if (PhysicsHandle->GetGrabbedComponent())
