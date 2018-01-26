@@ -13,6 +13,6 @@ BuildingEscape/Content/StarterContent/
 # VS Generated Files #
 #########################
 *.VC.db
-BuildingEscape/.vs/BuildingEscape/v15/Browse.VC.opendb
-BuildingEscape/.vs/BuildingEscape/
 */.vscode
+*.VC.opendb
+*.sln
